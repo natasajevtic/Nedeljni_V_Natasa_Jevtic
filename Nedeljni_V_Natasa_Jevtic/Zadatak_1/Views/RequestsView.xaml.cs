@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+using Zadatak_1.Models;
+using Zadatak_1.ViewModels;
 
 namespace Zadatak_1.Views
 {
@@ -20,9 +9,11 @@ namespace Zadatak_1.Views
     /// </summary>
     public partial class RequestsView : UserControl
     {
-        public RequestsView()
+        public RequestsView(vwUser user)
         {
             InitializeComponent();
+            this.Name = "Requests";
+            this.DataContext = new RequestsViewModel(this, user);
         }
     }
 }

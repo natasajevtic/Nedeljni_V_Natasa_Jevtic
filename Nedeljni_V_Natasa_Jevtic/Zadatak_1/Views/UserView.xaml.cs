@@ -28,7 +28,7 @@ namespace Zadatak_1.Views
             var item2 = new ItemMenu("Feed", menuFeed, PackIconKind.Feedback);
 
             var menuRequests = new List<SubItem>();
-            menuRequests.Add(new SubItem("View and send requests", new RequestsView()));
+            menuRequests.Add(new SubItem("View and send requests", new RequestsView(user)));
             var item3 = new ItemMenu("Requests", menuRequests, PackIconKind.PersonQuestion);
 
             var item0 = new ItemMenu("", new UserControl(), PackIconKind.ViewDashboard);
@@ -53,7 +53,7 @@ namespace Zadatak_1.Views
                 }
                 else if (screen.Name == "Requests")
                 {
-                    RequestsView requestsView = new RequestsView();
+                    RequestsView requestsView = new RequestsView(User);
                 }
                 else if (screen.Name == "Feed")
                 {
