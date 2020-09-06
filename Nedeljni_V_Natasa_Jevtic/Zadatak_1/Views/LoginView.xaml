@@ -1,0 +1,65 @@
+﻿<Window x:Class="Zadatak_1.Views.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Login" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="1" Source="/Images/SocialMedia.jpg" Stretch="Fill"/>
+        <TextBlock Text="between us"
+                   Grid.Column="1"
+                   Margin="0,20,0,0"
+                   HorizontalAlignment="Center"
+                   FontSize="25"
+                   FontWeight="Bold"
+                   Foreground="#DE5E3E"/>
+        <Rectangle Grid.Column="0" Height="225" 
+                   VerticalAlignment="Top" Fill="#F4CB3F">
+        </Rectangle>
+        <Rectangle Grid.Column="0" VerticalAlignment="Bottom" 
+                   Height="225" Fill="#F4CB3F"/>
+
+        <Grid Grid.Column="0"  
+              VerticalAlignment="Center" 
+              Margin="55,100"
+              Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="6"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="6"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="1" Grid.Row="1" Content="LOGIN" HorizontalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Width="200"
+                     materialDesign:HintAssist.Hint="Username" 
+                     Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                     Text="{Binding Username}"/>
+            <PasswordBox Grid.Column="1" Grid.Row="5" Width="200"
+                         materialDesign:HintAssist.Hint="Password" 
+                         Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}"
+                         x:Name="PasswordBox"/>
+        </Grid>
+        <Button Width="150" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,65" Content="LOGIN" 
+                Background="#768020" Foreground="White" BorderBrush="#768020"
+                CommandParameter="{Binding ElementName=PasswordBox}"
+                Command="{Binding LogIn}"/>
+        <Button Content="Registration" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="25" Foreground="White"
+                Background="#528388" BorderBrush="#528388"
+                Command="{Binding Registration}"/>
+        <materialDesign:PackIcon Kind="Home" Foreground="White" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+    </Grid>
+</Window>
