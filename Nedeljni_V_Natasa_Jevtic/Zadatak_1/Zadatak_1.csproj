@@ -72,6 +72,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Validations\DateOfBirthValidation.cs" />
+    <Compile Include="Validations\PhoneNumberValidation.cs" />
+    <Compile Include="Validations\PostContentValidation.cs" />
+    <Compile Include="Validations\UsernameValidation.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Views\LoginView.xaml.cs">
