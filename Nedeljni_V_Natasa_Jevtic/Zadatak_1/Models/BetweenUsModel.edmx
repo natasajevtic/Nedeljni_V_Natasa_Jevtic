@@ -1,0 +1,657 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BetweenUsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblLikedPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="PostId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPost">
+          <Key>
+            <PropertyRef Name="PostId" />
+          </Key>
+          <Property Name="PostId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="PostContent" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateOfPost" Type="date" Nullable="false" />
+          <Property Name="NumberOfLikes" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRequest">
+          <Key>
+            <PropertyRef Name="RequestId" />
+          </Key>
+          <Property Name="RequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SenderId" Type="int" Nullable="false" />
+          <Property Name="RecipientId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Profession" Type="varchar" MaxLength="100" />
+          <Property Name="Location" Type="varchar" MaxLength="100" />
+          <Property Name="MarriageStatus" Type="varchar" MaxLength="20" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="13" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BetweenUs.dbo.vwFriendPost' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwFriendPost">
+          <Key>
+            <PropertyRef Name="PostId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PostContent" />
+            <PropertyRef Name="DateOfPost" />
+            <PropertyRef Name="NumberOfLikes" />
+            <PropertyRef Name="RecipientId" />
+            <PropertyRef Name="SenderId" />
+            <PropertyRef Name="User" />
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="PostId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="PostContent" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateOfPost" Type="date" Nullable="false" />
+          <Property Name="NumberOfLikes" Type="int" Nullable="false" />
+          <Property Name="RecipientId" Type="int" Nullable="false" />
+          <Property Name="SenderId" Type="int" Nullable="false" />
+          <Property Name="User" Type="varchar" MaxLength="81" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BetweenUs.dbo.vwPost' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwPost">
+          <Key>
+            <PropertyRef Name="PostId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PostContent" />
+            <PropertyRef Name="DateOfPost" />
+            <PropertyRef Name="NumberOfLikes" />
+            <PropertyRef Name="User" />
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="PostId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="PostContent" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateOfPost" Type="date" Nullable="false" />
+          <Property Name="NumberOfLikes" Type="int" Nullable="false" />
+          <Property Name="User" Type="varchar" MaxLength="81" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="User id who liked" Type="int" />
+          <Property Name="User who liked" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BetweenUs.dbo.vwRequest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwRequest">
+          <Key>
+            <PropertyRef Name="RequestId" />
+            <PropertyRef Name="SenderId" />
+            <PropertyRef Name="RecipientId" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="Sender" />
+            <PropertyRef Name="Recipient" />
+            <PropertyRef Name="SenderUsename" />
+            <PropertyRef Name="RecipientUsername" />
+          </Key>
+          <Property Name="RequestId" Type="int" Nullable="false" />
+          <Property Name="SenderId" Type="int" Nullable="false" />
+          <Property Name="RecipientId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Sender" Type="varchar" MaxLength="81" Nullable="false" />
+          <Property Name="Recipient" Type="varchar" MaxLength="81" Nullable="false" />
+          <Property Name="SenderUsename" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="RecipientUsername" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BetweenUs.dbo.vwUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="DateOfBirth" />
+            <PropertyRef Name="Gender" />
+            <PropertyRef Name="User" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Profession" Type="varchar" MaxLength="100" />
+          <Property Name="Location" Type="varchar" MaxLength="100" />
+          <Property Name="MarriageStatus" Type="varchar" MaxLength="20" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="13" />
+          <Property Name="User" Type="varchar" MaxLength="81" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tblLikedP__PostI__2B7F66B9">
+          <End Role="tblPost" Type="Self.tblPost" Multiplicity="1" />
+          <End Role="tblLikedPost" Type="Self.tblLikedPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPost">
+              <PropertyRef Name="PostId" />
+            </Principal>
+            <Dependent Role="tblLikedPost">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLikedP__UserI__2A8B4280">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblLikedPost" Type="Self.tblLikedPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblLikedPost">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPost__UserId__25C68D63">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblPost" Type="Self.tblPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblPost">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblReques__Recip__2101D846">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblRequest" Type="Self.tblRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblRequest">
+              <PropertyRef Name="RecipientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblReques__Sende__200DB40D">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblRequest" Type="Self.tblRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblRequest">
+              <PropertyRef Name="SenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BetweenUsModelStoreContainer">
+          <EntitySet Name="tblLikedPost" EntityType="Self.tblLikedPost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPost" EntityType="Self.tblPost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRequest" EntityType="Self.tblRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vwFriendPost" EntityType="Self.vwFriendPost" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwFriendPost].[PostId] AS [PostId], 
+    [vwFriendPost].[UserId] AS [UserId], 
+    [vwFriendPost].[PostContent] AS [PostContent], 
+    [vwFriendPost].[DateOfPost] AS [DateOfPost], 
+    [vwFriendPost].[NumberOfLikes] AS [NumberOfLikes], 
+    [vwFriendPost].[RecipientId] AS [RecipientId], 
+    [vwFriendPost].[SenderId] AS [SenderId], 
+    [vwFriendPost].[User] AS [User], 
+    [vwFriendPost].[Username] AS [Username]
+    FROM [dbo].[vwFriendPost] AS [vwFriendPost]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwPost" EntityType="Self.vwPost" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwPost].[PostId] AS [PostId], 
+    [vwPost].[UserId] AS [UserId], 
+    [vwPost].[PostContent] AS [PostContent], 
+    [vwPost].[DateOfPost] AS [DateOfPost], 
+    [vwPost].[NumberOfLikes] AS [NumberOfLikes], 
+    [vwPost].[User] AS [User], 
+    [vwPost].[Username] AS [Username], 
+    [vwPost].[User id who liked] AS [User id who liked], 
+    [vwPost].[User who liked] AS [User who liked]
+    FROM [dbo].[vwPost] AS [vwPost]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwRequest" EntityType="Self.vwRequest" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwRequest].[RequestId] AS [RequestId], 
+    [vwRequest].[SenderId] AS [SenderId], 
+    [vwRequest].[RecipientId] AS [RecipientId], 
+    [vwRequest].[Status] AS [Status], 
+    [vwRequest].[Sender] AS [Sender], 
+    [vwRequest].[Recipient] AS [Recipient], 
+    [vwRequest].[SenderUsename] AS [SenderUsename], 
+    [vwRequest].[RecipientUsername] AS [RecipientUsername]
+    FROM [dbo].[vwRequest] AS [vwRequest]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwUser" EntityType="Self.vwUser" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwUser].[UserId] AS [UserId], 
+    [vwUser].[FirstName] AS [FirstName], 
+    [vwUser].[LastName] AS [LastName], 
+    [vwUser].[Username] AS [Username], 
+    [vwUser].[Password] AS [Password], 
+    [vwUser].[DateOfBirth] AS [DateOfBirth], 
+    [vwUser].[Gender] AS [Gender], 
+    [vwUser].[Profession] AS [Profession], 
+    [vwUser].[Location] AS [Location], 
+    [vwUser].[MarriageStatus] AS [MarriageStatus], 
+    [vwUser].[PhoneNumber] AS [PhoneNumber], 
+    [vwUser].[User] AS [User]
+    FROM [dbo].[vwUser] AS [vwUser]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__tblLikedP__PostI__2B7F66B9" Association="Self.FK__tblLikedP__PostI__2B7F66B9">
+            <End Role="tblPost" EntitySet="tblPost" />
+            <End Role="tblLikedPost" EntitySet="tblLikedPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLikedP__UserI__2A8B4280" Association="Self.FK__tblLikedP__UserI__2A8B4280">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblLikedPost" EntitySet="tblLikedPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPost__UserId__25C68D63" Association="Self.FK__tblPost__UserId__25C68D63">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblPost" EntitySet="tblPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblReques__Recip__2101D846" Association="Self.FK__tblReques__Recip__2101D846">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblRequest" EntitySet="tblRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblReques__Sende__200DB40D" Association="Self.FK__tblReques__Sende__200DB40D">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblRequest" EntitySet="tblRequest" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BetweenUsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblLikedPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="PostId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblPost" Relationship="Self.FK__tblLikedP__PostI__2B7F66B9" FromRole="tblLikedPost" ToRole="tblPost" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblLikedP__UserI__2A8B4280" FromRole="tblLikedPost" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblPost">
+          <Key>
+            <PropertyRef Name="PostId" />
+          </Key>
+          <Property Name="PostId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="PostContent" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfPost" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NumberOfLikes" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblLikedPosts" Relationship="Self.FK__tblLikedP__PostI__2B7F66B9" FromRole="tblPost" ToRole="tblLikedPost" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblPost__UserId__25C68D63" FromRole="tblPost" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblRequest">
+          <Key>
+            <PropertyRef Name="RequestId" />
+          </Key>
+          <Property Name="RequestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SenderId" Type="Int32" Nullable="false" />
+          <Property Name="RecipientId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK__tblReques__Recip__2101D846" FromRole="tblRequest" ToRole="tblUser" />
+          <NavigationProperty Name="tblUser1" Relationship="Self.FK__tblReques__Sende__200DB40D" FromRole="tblRequest" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Profession" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MarriageStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblLikedPosts" Relationship="Self.FK__tblLikedP__UserI__2A8B4280" FromRole="tblUser" ToRole="tblLikedPost" />
+          <NavigationProperty Name="tblPosts" Relationship="Self.FK__tblPost__UserId__25C68D63" FromRole="tblUser" ToRole="tblPost" />
+          <NavigationProperty Name="tblRequests" Relationship="Self.FK__tblReques__Recip__2101D846" FromRole="tblUser" ToRole="tblRequest" />
+          <NavigationProperty Name="tblRequests1" Relationship="Self.FK__tblReques__Sende__200DB40D" FromRole="tblUser" ToRole="tblRequest" />
+        </EntityType>
+        <EntityType Name="vwFriendPost">
+          <Key>
+            <PropertyRef Name="PostId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PostContent" />
+            <PropertyRef Name="DateOfPost" />
+            <PropertyRef Name="NumberOfLikes" />
+            <PropertyRef Name="RecipientId" />
+            <PropertyRef Name="SenderId" />
+            <PropertyRef Name="User" />
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="PostId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="PostContent" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfPost" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NumberOfLikes" Type="Int32" Nullable="false" />
+          <Property Name="RecipientId" Type="Int32" Nullable="false" />
+          <Property Name="SenderId" Type="Int32" Nullable="false" />
+          <Property Name="User" Type="String" MaxLength="81" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vwPost">
+          <Key>
+            <PropertyRef Name="PostId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PostContent" />
+            <PropertyRef Name="DateOfPost" />
+            <PropertyRef Name="NumberOfLikes" />
+            <PropertyRef Name="User" />
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="PostId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="PostContent" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfPost" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NumberOfLikes" Type="Int32" Nullable="false" />
+          <Property Name="User" Type="String" MaxLength="81" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_id_who_liked" Type="Int32" />
+          <Property Name="User_who_liked" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vwRequest">
+          <Key>
+            <PropertyRef Name="RequestId" />
+            <PropertyRef Name="SenderId" />
+            <PropertyRef Name="RecipientId" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="Sender" />
+            <PropertyRef Name="Recipient" />
+            <PropertyRef Name="SenderUsename" />
+            <PropertyRef Name="RecipientUsername" />
+          </Key>
+          <Property Name="RequestId" Type="Int32" Nullable="false" />
+          <Property Name="SenderId" Type="Int32" Nullable="false" />
+          <Property Name="RecipientId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sender" Type="String" MaxLength="81" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Recipient" Type="String" MaxLength="81" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SenderUsename" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RecipientUsername" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vwUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="DateOfBirth" />
+            <PropertyRef Name="Gender" />
+            <PropertyRef Name="User" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Profession" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MarriageStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="User" Type="String" MaxLength="81" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tblLikedP__PostI__2B7F66B9">
+          <End Role="tblPost" Type="Self.tblPost" Multiplicity="1" />
+          <End Role="tblLikedPost" Type="Self.tblLikedPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPost">
+              <PropertyRef Name="PostId" />
+            </Principal>
+            <Dependent Role="tblLikedPost">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLikedP__UserI__2A8B4280">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblLikedPost" Type="Self.tblLikedPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblLikedPost">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPost__UserId__25C68D63">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblPost" Type="Self.tblPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblPost">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblReques__Recip__2101D846">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblRequest" Type="Self.tblRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblRequest">
+              <PropertyRef Name="RecipientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblReques__Sende__200DB40D">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblRequest" Type="Self.tblRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="tblRequest">
+              <PropertyRef Name="SenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BetweenUsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblLikedPosts" EntityType="Self.tblLikedPost" />
+          <EntitySet Name="tblPosts" EntityType="Self.tblPost" />
+          <EntitySet Name="tblRequests" EntityType="Self.tblRequest" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="vwFriendPosts" EntityType="Self.vwFriendPost" />
+          <EntitySet Name="vwPosts" EntityType="Self.vwPost" />
+          <EntitySet Name="vwRequests" EntityType="Self.vwRequest" />
+          <EntitySet Name="vwUsers" EntityType="Self.vwUser" />
+          <AssociationSet Name="FK__tblLikedP__PostI__2B7F66B9" Association="Self.FK__tblLikedP__PostI__2B7F66B9">
+            <End Role="tblPost" EntitySet="tblPosts" />
+            <End Role="tblLikedPost" EntitySet="tblLikedPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLikedP__UserI__2A8B4280" Association="Self.FK__tblLikedP__UserI__2A8B4280">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblLikedPost" EntitySet="tblLikedPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPost__UserId__25C68D63" Association="Self.FK__tblPost__UserId__25C68D63">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblPost" EntitySet="tblPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblReques__Recip__2101D846" Association="Self.FK__tblReques__Recip__2101D846">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblRequest" EntitySet="tblRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblReques__Sende__200DB40D" Association="Self.FK__tblReques__Sende__200DB40D">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblRequest" EntitySet="tblRequests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BetweenUsModelStoreContainer" CdmEntityContainer="BetweenUsEntities">
+          <EntitySetMapping Name="tblLikedPosts">
+            <EntityTypeMapping TypeName="BetweenUsModel.tblLikedPost">
+              <MappingFragment StoreEntitySet="tblLikedPost">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPosts">
+            <EntityTypeMapping TypeName="BetweenUsModel.tblPost">
+              <MappingFragment StoreEntitySet="tblPost">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PostContent" ColumnName="PostContent" />
+                <ScalarProperty Name="DateOfPost" ColumnName="DateOfPost" />
+                <ScalarProperty Name="NumberOfLikes" ColumnName="NumberOfLikes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRequests">
+            <EntityTypeMapping TypeName="BetweenUsModel.tblRequest">
+              <MappingFragment StoreEntitySet="tblRequest">
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+                <ScalarProperty Name="RecipientId" ColumnName="RecipientId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="BetweenUsModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Profession" ColumnName="Profession" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="MarriageStatus" ColumnName="MarriageStatus" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwFriendPosts">
+            <EntityTypeMapping TypeName="BetweenUsModel.vwFriendPost">
+              <MappingFragment StoreEntitySet="vwFriendPost">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PostContent" ColumnName="PostContent" />
+                <ScalarProperty Name="DateOfPost" ColumnName="DateOfPost" />
+                <ScalarProperty Name="NumberOfLikes" ColumnName="NumberOfLikes" />
+                <ScalarProperty Name="RecipientId" ColumnName="RecipientId" />
+                <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwPosts">
+            <EntityTypeMapping TypeName="BetweenUsModel.vwPost">
+              <MappingFragment StoreEntitySet="vwPost">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PostContent" ColumnName="PostContent" />
+                <ScalarProperty Name="DateOfPost" ColumnName="DateOfPost" />
+                <ScalarProperty Name="NumberOfLikes" ColumnName="NumberOfLikes" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="User_id_who_liked" ColumnName="User id who liked" />
+                <ScalarProperty Name="User_who_liked" ColumnName="User who liked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwRequests">
+            <EntityTypeMapping TypeName="BetweenUsModel.vwRequest">
+              <MappingFragment StoreEntitySet="vwRequest">
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+                <ScalarProperty Name="RecipientId" ColumnName="RecipientId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Sender" ColumnName="Sender" />
+                <ScalarProperty Name="Recipient" ColumnName="Recipient" />
+                <ScalarProperty Name="SenderUsename" ColumnName="SenderUsename" />
+                <ScalarProperty Name="RecipientUsername" ColumnName="RecipientUsername" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwUsers">
+            <EntityTypeMapping TypeName="BetweenUsModel.vwUser">
+              <MappingFragment StoreEntitySet="vwUser">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Profession" ColumnName="Profession" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="MarriageStatus" ColumnName="MarriageStatus" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="User" ColumnName="User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
