@@ -79,8 +79,10 @@
     <Compile Include="ViewModels\AddPostViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\FeedViewModel.cs" />
+    <Compile Include="ViewModels\FriendsLikesViewModel.cs" />
     <Compile Include="ViewModels\ItemMenu.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\OtherLikesViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\RequestsViewModel.cs" />
@@ -92,6 +94,9 @@
     <Compile Include="Views\FeedView.xaml.cs">
       <DependentUpon>FeedView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FriendsLikesView.xaml.cs">
+      <DependentUpon>FriendsLikesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -101,6 +106,9 @@
     </Compile>
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Helper\Encryption.cs" />
+    <Compile Include="Views\OtherLikesView.xaml.cs">
+      <DependentUpon>OtherLikesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProfileView.xaml.cs">
       <DependentUpon>ProfileView.xaml</DependentUpon>
     </Compile>
@@ -124,7 +132,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\FriendsLikesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OtherLikesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

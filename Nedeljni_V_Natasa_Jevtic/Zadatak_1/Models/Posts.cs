@@ -56,5 +56,31 @@ namespace Zadatak_1.Models
                 return null;
             }
         }
+
+        public List<vwUser> UsersWhoLikedPost(vwPost post)
+        {
+            try
+            {
+                using (BetweenUsEntities context = new BetweenUsEntities())
+                {
+                    List<int> usersId = context.tblLikedPosts.Where(x => x.PostId == post.PostId).Select(x => x.UserId).ToList();
+                    List<vwUser> users = new List<vwUser>();
+                    foreach (var item in usersId)
+                    {
+                        vwUser user = context.vwUsers.Where(x => x.UserId == item).FirstOrDefault();
+                        if (user!=null)
+                        {
+                            users.Add(user);
+                        }
+                    }
+                    return users;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
     }
 }

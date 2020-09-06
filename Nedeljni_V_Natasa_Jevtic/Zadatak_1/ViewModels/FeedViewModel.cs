@@ -103,6 +103,35 @@ namespace Zadatak_1.ViewModels
                 return likePost;
             }
         }
+
+        private ICommand viewFriendsLikes;
+
+        public ICommand ViewFriendsLikes
+        {
+            get
+            {
+                if (viewFriendsLikes == null)
+                {
+                    viewFriendsLikes = new RelayCommand(param => ViewFriendsLikesExecute(), param => CanViewFriendsLikesExecute());
+                }
+                return viewFriendsLikes;
+            }
+        }
+
+        private ICommand viewOtherUsersLikes;
+
+        public ICommand ViewOtherUsersLikes
+        {
+            get
+            {
+                if (viewOtherUsersLikes == null)
+                {
+                    viewOtherUsersLikes = new RelayCommand(param => ViewOtherUsersLikesExecute(), param => CanViewOtherUsersLikesExecute());
+                }
+                return viewOtherUsersLikes;
+            }
+        }
+
         public FeedViewModel(FeedView feedView, vwUser user)
         {
             this.feedView = feedView;
@@ -115,7 +144,14 @@ namespace Zadatak_1.ViewModels
         {
             if (Post != null)
             {
-                return true;
+                if (friendsPost.IsUserLikedPost(Post,User))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {
@@ -127,8 +163,72 @@ namespace Zadatak_1.ViewModels
         {
             try
             {
-                friendsPost.LikePost(Post);
+                friendsPost.LikePost(Post, User);
                 FriendsPostList = friendsPost.GetFriendsPost(User);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        public bool CanViewFriendsLikesExecute()
+        {
+            if (Post != null)
+            {
+                if (Post.NumberOfLikes > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }                
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void ViewFriendsLikesExecute()
+        {
+            try
+            {
+                FriendsLikesView friendsLikes = new FriendsLikesView(Post);
+                friendsLikes.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        public bool CanViewOtherUsersLikesExecute()
+        {
+            if (PostOfNotFriend != null)
+            {
+                if (PostOfNotFriend.NumberOfLikes > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void ViewOtherUsersLikesExecute()
+        {
+            try
+            {
+                OtherLikesView otherLikes = new OtherLikesView(PostOfNotFriend);
+                otherLikes.ShowDialog();
             }
             catch (Exception ex)
             {

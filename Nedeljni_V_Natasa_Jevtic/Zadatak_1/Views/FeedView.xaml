@@ -42,17 +42,17 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Margin="0,10" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Clock"/>
-                            <TextBlock 
+                            <TextBlock Margin="5,0,0,0"
                        Text="{Binding Path=DateOfPost, StringFormat=d}"/>
                             <materialDesign:PackIcon Kind="Person"/>
-                            <TextBlock 
+                            <TextBlock Margin="5,0,0,0"
                        Text="{Binding Path=Username}"/>
                         </StackPanel>
                         <Border Grid.Row="1" BorderBrush="DarkGray" 
                     BorderThickness="1"/>
                         <StackPanel Grid.Row="2" Margin="0,10" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Post"/>
-                            <TextBlock 
+                            <TextBlock Margin="5,0,0,0"
                        Text="{Binding Path=PostContent}"
                                TextWrapping="Wrap"/>
                         </StackPanel>
@@ -65,9 +65,14 @@
                                 <materialDesign:PackIcon Kind="Heart" Height="18" Width="18"
                                                          Foreground="Red"/>
                             </Button>
-
-                            <TextBlock 
+                            <TextBlock Margin="5,0,0,0"
                        Text="{Binding Path=NumberOfLikes}"/>
+                            <Button Style="{StaticResource MaterialDesignIconButton}"
+                              Foreground="Red" Height="20" Width="20"
+                                    Command="{Binding DataContext.ViewFriendsLikes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}">
+                                <materialDesign:PackIcon Kind="Eye" Height="18" Width="18"
+                                                         Foreground="Blue"/>
+                            </Button>
                         </StackPanel>
 
                     </Grid>
@@ -94,16 +99,17 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Margin="0,10" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Clock"/>
-                            <TextBlock 
+                            <TextBlock Margin="5,0,0,0"
                        Text="{Binding Path=DateOfPost, StringFormat=d}"/>
-                            <TextBlock 
+                            <materialDesign:PackIcon Kind="Person"/>
+                            <TextBlock Margin="5,0,0,0"
                        Text="{Binding Path=Username}"/>
                         </StackPanel>
                         <Border Grid.Row="1" BorderBrush="DarkGray" 
                     BorderThickness="1"/>
                         <StackPanel Grid.Row="2" Margin="0,10" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Post"/>
-                            <TextBlock 
+                            <TextBlock Margin="5,0,0,0"
                        Text="{Binding Path=PostContent}"
                                TextWrapping="Wrap"/>
                         </StackPanel>
@@ -111,8 +117,14 @@
                     BorderThickness="1" />
                         <StackPanel Grid.Row="4" Margin="0,10" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Heart" Foreground="Red"/>
-                            <TextBlock 
+                            <TextBlock Margin="5,0,0,0"
                        Text="{Binding Path=NumberOfLikes}"/>
+                            <Button Style="{StaticResource MaterialDesignIconButton}"
+                              Foreground="Red" Height="20" Width="20"
+                                    Command="{Binding DataContext.ViewOtherUsersLikes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}">
+                                <materialDesign:PackIcon Kind="Eye" Height="18" Width="18"
+                                                         Foreground="Blue"/>
+                            </Button>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
