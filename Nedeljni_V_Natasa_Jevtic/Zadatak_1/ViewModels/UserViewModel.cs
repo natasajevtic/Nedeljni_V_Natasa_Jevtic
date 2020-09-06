@@ -55,7 +55,9 @@ namespace Zadatak_1.ViewModels
             MessageBoxResult result = MessageBox.Show("Are you sure you want to log out?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                userView.Close();
+                LoginView login = new LoginView();
+                userView.Close();                
+                login.ShowDialog();
             }
         }
     }

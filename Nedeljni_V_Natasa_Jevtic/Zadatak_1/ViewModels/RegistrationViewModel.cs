@@ -116,7 +116,9 @@ namespace Zadatak_1.ViewModels
                         if (isCreated == true)
                         {
                             MessageBox.Show("Successful registration!", "Notification", MessageBoxButton.OK);
-                            registrationView.Close();
+                            LoginView login = new LoginView();
+                            registrationView.Close();                            
+                            login.ShowDialog();
                         }
                         else
                         {
@@ -143,7 +145,9 @@ namespace Zadatak_1.ViewModels
                 MessageBoxResult result = MessageBox.Show("Are you sure you want to cancel registration?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
-                    registrationView.Close();
+                    LoginView login = new LoginView();
+                    registrationView.Close();                    
+                    login.ShowDialog();
                 }
             }
             catch (Exception ex)

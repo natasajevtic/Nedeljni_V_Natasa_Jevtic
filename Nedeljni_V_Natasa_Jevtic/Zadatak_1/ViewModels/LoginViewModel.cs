@@ -87,6 +87,7 @@ namespace Zadatak_1.ViewModels
             {
                 User = users.FindUser(Username, Password);
                 UserView userView = new UserView(User);
+                login.Close();
                 userView.ShowDialog();
 
             }
@@ -121,6 +122,7 @@ namespace Zadatak_1.ViewModels
         public void RegistrationExecute()
         {
             RegistrationView registrationView = new RegistrationView();
+            login.Close();
             registrationView.ShowDialog();            
         }
     }
