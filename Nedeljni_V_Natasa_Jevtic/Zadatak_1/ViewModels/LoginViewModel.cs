@@ -86,7 +86,7 @@ namespace Zadatak_1.ViewModels
             if (users.FindUser(Username, Password) != null)
             {
                 User = users.FindUser(Username, Password);
-                UserView userView = new UserView();
+                UserView userView = new UserView(User);
                 userView.ShowDialog();
 
             }
