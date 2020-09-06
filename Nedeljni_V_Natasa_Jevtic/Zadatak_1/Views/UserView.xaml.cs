@@ -24,7 +24,7 @@ namespace Zadatak_1.Views
             var item1 = new ItemMenu("Profile", menuProfile, PackIconKind.Person);
 
             var menuFeed = new List<SubItem>();
-            menuFeed.Add(new SubItem("Search feed", new FeedView()));
+            menuFeed.Add(new SubItem("Search feed", new FeedView(user)));
             var item2 = new ItemMenu("Feed", menuFeed, PackIconKind.Feedback);
 
             var menuRequests = new List<SubItem>();
@@ -57,7 +57,7 @@ namespace Zadatak_1.Views
                 }
                 else if (screen.Name == "Feed")
                 {
-                    FeedView feedView = new FeedView();
+                    FeedView feedView = new FeedView(User);
                 }
             }
         }

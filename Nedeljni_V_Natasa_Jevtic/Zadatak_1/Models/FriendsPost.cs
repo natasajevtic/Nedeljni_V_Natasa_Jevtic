@@ -57,7 +57,7 @@ namespace Zadatak_1.Models
                             posts.Remove(item);
                         }
                     }
-                    return posts;
+                    return posts.Where(x => x.UserId != user.UserId).ToList();
                 }
             }
             catch (Exception ex)
@@ -76,7 +76,8 @@ namespace Zadatak_1.Models
             {
                 using (BetweenUsEntities context = new BetweenUsEntities())
                 {
-                    var postToLike = context.tblPosts.Where(x => x.PostId == post.PostId).FirstOrDefault();
+                   int id = context.vwFriendPosts.Where(x => x.PostId == post.PostId).Select(x => x.PostId).FirstOrDefault();
+                    tblPost postToLike = context.tblPosts.Where(x => x.PostId == id).FirstOrDefault();
                     if (postToLike != null)
                     {
                         postToLike.NumberOfLikes++;
