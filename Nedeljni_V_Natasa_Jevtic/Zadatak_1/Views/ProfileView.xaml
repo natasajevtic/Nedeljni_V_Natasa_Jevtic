@@ -87,6 +87,7 @@
 
         <ListView Grid.Column="3" Grid.Row="3" 
                   ItemsSource="{Binding ListPost, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding Post, UpdateSourceTrigger=PropertyChanged}"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   >
@@ -121,8 +122,13 @@
                             <materialDesign:PackIcon Kind="Heart" Foreground="Red"/>
                             <TextBlock Margin="5,0,0,0"
                        Text="{Binding Path=NumberOfLikes}"/>
+                            <Button Style="{StaticResource MaterialDesignIconButton}"
+                              Foreground="Red" Height="20" Width="20" Margin="5,0,0,0"
+                                    Command="{Binding DataContext.ViewLikes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}">
+                                <materialDesign:PackIcon Kind="Eye" Height="18" Width="18"
+                                                         Foreground="Blue"/>
+                            </Button>
                         </StackPanel>
-
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

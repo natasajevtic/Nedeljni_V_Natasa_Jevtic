@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 using Zadatak_1.Commands;
 using Zadatak_1.Models;
@@ -71,6 +73,20 @@ namespace Zadatak_1.ViewModels
             }
         }
 
+        private ICommand viewLikes;
+
+        public ICommand ViewLikes
+        {
+            get
+            {
+                if (viewLikes == null)
+                {
+                    viewLikes = new RelayCommand(param => ViewLikesExecute(), param => CanViewLikesExecute());
+                }
+                return viewLikes;
+            }
+        }
+
         public ProfileViewModel(ProfileView profileView, vwUser user)
         {
             this.profileView = profileView;
@@ -88,6 +104,38 @@ namespace Zadatak_1.ViewModels
             AddPostView addPostView = new AddPostView(User);
             addPostView.ShowDialog();
             ListPost = posts.GetUserPosts(User);
+        }
+
+        public bool CanViewLikesExecute()
+        {
+            if (Post != null)
+            {
+                if (Post.NumberOfLikes > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void ViewLikesExecute()
+        {
+            try
+            {
+                OtherLikesView otherLikes = new OtherLikesView(Post);
+                otherLikes.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
