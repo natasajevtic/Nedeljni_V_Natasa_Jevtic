@@ -8,7 +8,7 @@ namespace Zadatak_1.Models
         /// This method created list of relationship status.
         /// </summary>
         /// <returns>List of relationship status.</returns>
-        public List<string> GetRealtionshipStatus()
+        public List<string> GetRelationshipStatus()
         {
             return new List<string> { "Single", "In relationship", "Married", "Divorced" };
         }
