@@ -1,12 +1,93 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Windows.Input;
+using Zadatak_1.Commands;
+using Zadatak_1.Models;
+using Zadatak_1.Views;
 
 namespace Zadatak_1.ViewModels
 {
-    class ProfileViewModel
+    class ProfileViewModel : BaseViewModel
     {
+        ProfileView profileView;
+        Users users = new Users();
+        Posts posts = new Posts();
+
+        private vwUser user;
+
+        public vwUser User
+        {
+            get
+            {
+                return user;
+            }
+            set
+            {
+                user = value;
+                OnPropertyChanged("User");
+            }
+        }
+
+        private vwPost post;
+
+        public vwPost Post
+        {
+            get
+            {
+                return post;
+            }
+            set
+            {
+                post = value;
+                OnPropertyChanged("Post");
+            }
+        }
+
+        private List<vwPost> listPost;
+
+        public List<vwPost> ListPost
+        {
+            get
+            {
+                return listPost;
+            }
+            set
+            {
+                listPost = value;
+                OnPropertyChanged("ListPost");
+            }
+        }
+
+        private ICommand addPost;
+
+        public ICommand AddPost
+        {
+            get
+            {
+                if (addPost == null)
+                {
+                    addPost = new RelayCommand(param => AddPostExecute(), param => CanAddPostExecute());
+                }
+                return addPost;
+            }
+        }
+
+        public ProfileViewModel(ProfileView profileView, vwUser user)
+        {
+            this.profileView = profileView;
+            User = user;
+            ListPost = posts.GetUserPosts(User);
+        }
+
+        public bool CanAddPostExecute()
+        {
+            return true;
+        }
+
+        public void AddPostExecute()
+        {
+            AddPostView addPostView = new AddPostView(User);
+            addPostView.ShowDialog();
+            ListPost = posts.GetUserPosts(User);
+        }
     }
 }

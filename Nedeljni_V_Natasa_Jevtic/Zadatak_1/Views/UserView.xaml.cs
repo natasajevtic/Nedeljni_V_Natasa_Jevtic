@@ -20,7 +20,7 @@ namespace Zadatak_1.Views
             User = user;
             this.DataContext = new UserViewModel(this, user);
             var menuProfile = new List<SubItem>();
-            menuProfile.Add(new SubItem("View my profile", new ProfileView()));
+            menuProfile.Add(new SubItem("View my profile", new ProfileView(user)));
             var item1 = new ItemMenu("Profile", menuProfile, PackIconKind.Person);
 
             var menuFeed = new List<SubItem>();
@@ -49,7 +49,7 @@ namespace Zadatak_1.Views
 
                 if (screen.Name == "Profile")
                 {
-                    ProfileView profileView = new ProfileView();
+                    ProfileView profileView = new ProfileView(User);
                 }
                 else if (screen.Name == "Requests")
                 {

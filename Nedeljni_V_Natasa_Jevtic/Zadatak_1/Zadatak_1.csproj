@@ -76,6 +76,7 @@
     <Compile Include="Validations\PhoneNumberValidation.cs" />
     <Compile Include="Validations\PostContentValidation.cs" />
     <Compile Include="Validations\UsernameValidation.cs" />
+    <Compile Include="ViewModels\AddPostViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\FeedViewModel.cs" />
     <Compile Include="ViewModels\ItemMenu.cs" />
@@ -85,6 +86,9 @@
     <Compile Include="ViewModels\RequestsViewModel.cs" />
     <Compile Include="ViewModels\SubItem.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="Views\AddPostView.xaml.cs">
+      <DependentUpon>AddPostView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FeedView.xaml.cs">
       <DependentUpon>FeedView.xaml</DependentUpon>
     </Compile>
@@ -112,6 +116,10 @@
     <Compile Include="Views\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AddPostView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FeedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

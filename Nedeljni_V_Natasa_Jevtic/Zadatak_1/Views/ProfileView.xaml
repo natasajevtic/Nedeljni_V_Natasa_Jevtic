@@ -4,9 +4,128 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Zadatak_1.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Label  Grid.Column="1" Grid.Row="1" Content="About user" 
+                HorizontalAlignment="Center" FontWeight="Bold"/>
+        <ListView Grid.Column="1" Grid.Row="3" 
+                  HorizontalAlignment="Left" 
+                  VerticalAlignment="Top"
+                  FontSize="10">
+            <ListViewItem>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="First name:"/>
+                    <Label Content="{Binding User.FirstName, UpdateSourceTrigger=PropertyChanged, Mode=OneTime}"/>
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Last name:"/>
+                    <Label Content="{Binding User.LastName, UpdateSourceTrigger=PropertyChanged, Mode=OneTime}"/>
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Birthday:"/>
+                    <Label Content="{Binding User.DateOfBirth}"/>
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Gender:"/>
+                    <Label Content="{Binding User.Gender}"/>
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Phone number:"/>
+                    <Label Content="{Binding User.PhoneNumber}"/>
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Profession:"/>
+                    <Label Content="{Binding User.Profession}"/>
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Location:"/>
+                    <Label Content="{Binding User.Location}"/>
+                </StackPanel>
+            </ListViewItem>
+            <ListViewItem>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Marriage status:"/>
+                    <Label Content="{Binding User.MarriageStatus}"/>
+                </StackPanel>
+            </ListViewItem>
+        </ListView>
+
+        <Button Grid.Column="3" Grid.Row="1"
+                Content="Add a post"
+                Command="{Binding AddPost}"
+                HorizontalAlignment="Right"
+                Background="#DE5E3E"
+                BorderBrush="#DE5E3E"/>
+
+        <ListView Grid.Column="3" Grid.Row="3" 
+                  ItemsSource="{Binding ListPost, UpdateSourceTrigger=PropertyChanged}"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Margin="0,10" Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Clock"/>
+                            <TextBlock 
+                       Text="{Binding Path=DateOfPost, StringFormat=d}" Margin="5,0,0,0"/>
+                        </StackPanel>
+
+                        <Border Grid.Row="1" BorderBrush="DarkGray" 
+                    BorderThickness="1"/>
+                        <StackPanel Grid.Row="2" Margin="0,10" Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Post"/>
+                            <TextBlock 
+                       Text="{Binding Path=PostContent}" Margin="5,0,0,0"
+                               TextWrapping="Wrap"/>
+                        </StackPanel>
+
+                        <Border Grid.Row="3"  BorderBrush="DarkGray" 
+                    BorderThickness="1" />
+                        <StackPanel Grid.Row="4" Margin="0,10" Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Heart" Foreground="Red"/>
+                            <TextBlock Margin="5,0,0,0"
+                       Text="{Binding Path=NumberOfLikes}"/>
+                        </StackPanel>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>
