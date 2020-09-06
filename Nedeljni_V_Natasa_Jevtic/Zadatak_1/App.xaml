@@ -2,8 +2,25 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Zadatak_1"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Views/LoginView.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Indigo.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <ControlTemplate x:Key="errorTemplate">
+                <StackPanel>
+                    <Border BorderBrush="OrangeRed"
+                        BorderThickness="1">
+                        <AdornedElementPlaceholder/>
+                    </Border>
+                    <TextBlock Foreground="OrangeRed"
+                           Text="{Binding [0].ErrorContent}" />
+                </StackPanel>
+            </ControlTemplate>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="93da6b1c70a94890a377f8a88a1e23b2" Name="Diagram1">
+        <EntityTypeShape EntityType="BetweenUsModel.tblLikedPost" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BetweenUsModel.tblPost" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BetweenUsModel.tblRequest" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BetweenUsModel.tblUser" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BetweenUsModel.vwFriendPost" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BetweenUsModel.vwPost" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BetweenUsModel.vwRequest" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BetweenUsModel.vwUser" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="BetweenUsModel.FK__tblLikedP__PostI__2B7F66B9" ManuallyRouted="false" />
+        <AssociationConnector Association="BetweenUsModel.FK__tblLikedP__UserI__2A8B4280" ManuallyRouted="false" />
+        <AssociationConnector Association="BetweenUsModel.FK__tblPost__UserId__25C68D63" ManuallyRouted="false" />
+        <AssociationConnector Association="BetweenUsModel.FK__tblReques__Recip__2101D846" ManuallyRouted="false" />
+        <AssociationConnector Association="BetweenUsModel.FK__tblReques__Sende__200DB40D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
