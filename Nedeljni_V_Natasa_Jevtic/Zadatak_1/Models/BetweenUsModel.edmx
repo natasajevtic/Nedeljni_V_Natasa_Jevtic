@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BetweenUsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BetweenUsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblLikedPost">
           <Key>
             <PropertyRef Name="Id" />
@@ -142,7 +142,7 @@ warning 6002: The table/view 'BetweenUs.dbo.vwUser' does not have a primary key 
           <Property Name="PhoneNumber" Type="varchar" MaxLength="13" />
           <Property Name="User" Type="varchar" MaxLength="81" Nullable="false" />
         </EntityType>
-        <Association Name="FK__tblLikedP__PostI__2B7F66B9">
+        <Association Name="FK__tblLikedP__PostI__46335CF5">
           <End Role="tblPost" Type="Self.tblPost" Multiplicity="1" />
           <End Role="tblLikedPost" Type="Self.tblLikedPost" Multiplicity="*" />
           <ReferentialConstraint>
@@ -154,7 +154,7 @@ warning 6002: The table/view 'BetweenUs.dbo.vwUser' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblLikedP__UserI__2A8B4280">
+        <Association Name="FK__tblLikedP__UserI__453F38BC">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblLikedPost" Type="Self.tblLikedPost" Multiplicity="*" />
           <ReferentialConstraint>
@@ -166,7 +166,7 @@ warning 6002: The table/view 'BetweenUs.dbo.vwUser' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPost__UserId__25C68D63">
+        <Association Name="FK__tblPost__UserId__407A839F">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblPost" Type="Self.tblPost" Multiplicity="*" />
           <ReferentialConstraint>
@@ -178,7 +178,7 @@ warning 6002: The table/view 'BetweenUs.dbo.vwUser' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblReques__Recip__2101D846">
+        <Association Name="FK__tblReques__Recip__3BB5CE82">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblRequest" Type="Self.tblRequest" Multiplicity="*" />
           <ReferentialConstraint>
@@ -190,7 +190,7 @@ warning 6002: The table/view 'BetweenUs.dbo.vwUser' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblReques__Sende__200DB40D">
+        <Association Name="FK__tblReques__Sende__3AC1AA49">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblRequest" Type="Self.tblRequest" Multiplicity="*" />
           <ReferentialConstraint>
@@ -261,29 +261,28 @@ warning 6002: The table/view 'BetweenUs.dbo.vwUser' does not have a primary key 
     [vwUser].[User] AS [User]
     FROM [dbo].[vwUser] AS [vwUser]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__tblLikedP__PostI__2B7F66B9" Association="Self.FK__tblLikedP__PostI__2B7F66B9">
+          <AssociationSet Name="FK__tblLikedP__PostI__46335CF5" Association="Self.FK__tblLikedP__PostI__46335CF5">
             <End Role="tblPost" EntitySet="tblPost" />
             <End Role="tblLikedPost" EntitySet="tblLikedPost" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblLikedP__UserI__2A8B4280" Association="Self.FK__tblLikedP__UserI__2A8B4280">
+          <AssociationSet Name="FK__tblLikedP__UserI__453F38BC" Association="Self.FK__tblLikedP__UserI__453F38BC">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblLikedPost" EntitySet="tblLikedPost" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPost__UserId__25C68D63" Association="Self.FK__tblPost__UserId__25C68D63">
+          <AssociationSet Name="FK__tblPost__UserId__407A839F" Association="Self.FK__tblPost__UserId__407A839F">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblPost" EntitySet="tblPost" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblReques__Recip__2101D846" Association="Self.FK__tblReques__Recip__2101D846">
+          <AssociationSet Name="FK__tblReques__Recip__3BB5CE82" Association="Self.FK__tblReques__Recip__3BB5CE82">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblRequest" EntitySet="tblRequest" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblReques__Sende__200DB40D" Association="Self.FK__tblReques__Sende__200DB40D">
+          <AssociationSet Name="FK__tblReques__Sende__3AC1AA49" Association="Self.FK__tblReques__Sende__3AC1AA49">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblRequest" EntitySet="tblRequest" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BetweenUsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

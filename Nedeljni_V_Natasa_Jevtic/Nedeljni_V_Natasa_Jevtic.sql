@@ -59,7 +59,8 @@ select *, FirstName + ' ' + LastName 'User'
 from tblUser;
 GO
 create view vwRequest as
-select r.*, s.FirstName + ' ' + s.LastName 'Sender', u.FirstName + ' ' + u.LastName 'Recipient'
+select r.*, s.FirstName + ' ' + s.LastName 'Sender', u.FirstName + ' ' + u.LastName 'Recipient',
+ s.Username 'SenderUsename', u.Username 'RecipientUsername'
 from tblRequest r
 INNER JOIN tblUser s
 ON r.SenderId = s.UserId
@@ -67,13 +68,13 @@ INNER JOIN tblUser u
 ON r.RecipientId = u.UserId;
 GO
 create view vwFriendPost as
-select p.*, r.RecipientId, r.SenderId,  u.FirstName + ' ' + u.LastName 'User'
+select p.*, r.RecipientId, r.SenderId,  u.FirstName + ' ' + u.LastName 'User', u.Username
 from tblPost p
 INNER JOIN tblRequest r
 ON p.UserId = r.SenderId OR p.UserId = r.RecipientId
 INNER JOIN tblUser u
 ON p.UserId = u.UserId
-WHERE r.Status LIKE 'Approved';
+WHERE r.Status LIKE 'Accepted';
 GO
 create view vwPost as
 select p.*, u.FirstName + ' ' + u.LastName 'User', u.Username, l.UserId 'User id who liked', us.Username 'User who liked'
